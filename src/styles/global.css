@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#root {
+	font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+	--main-body-color: #0a0b0b;
+	--white: #fff;
+}
+
+.game-container {
+	color: var(--white);
+}
