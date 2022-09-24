@@ -1,0 +1,16 @@
+.game-container {
+	padding: 0 20px 20px 20px;
+}
+
+.game-container .game-container__level {
+	text-align: center;
+	font-size: 1.4rem;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+}
+
+.game-container__characters {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+	gap: 20px;
+}

@@ -5,7 +5,7 @@ import './styles/global.css';
 
 const App = () => {
 	return (
-		<div className="game-container">
+		<div className="main-container">
 			<Header />
 			<Main />
 			<Footer />
