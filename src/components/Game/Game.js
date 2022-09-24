@@ -1,6 +1,7 @@
 import Character from './Character';
 import { useState } from 'react';
 import GameOver from '../../components/GameOver/GameOver';
+import GameContainer from './GameContainer';
 import '../../styles/Main.css';
 
 const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreInfo }) => {
@@ -31,20 +32,21 @@ const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreI
 			{gameDone ? (
 				<GameOver score={score} />
 			) : (
-				<div className="game-container">
-					<p className="game-container__level">Level {level}</p>
-					<div className="game-container__characters">
-						{characters.map(character => (
-							<Character
-								key={character.id}
-								id={character.id}
-								name={character.name}
-								image={character.image}
-								onCharacterHandleClick={characterHandleClick}
-							/>
-						))}
-					</div>
-				</div>
+				<GameContainer characters={characters} level={level} characterHandleClick={characterHandleClick} />
+				// <div className="game-container">
+				// 	<p className="game-container__level">Level {level}</p>
+				// 	<div className="game-container__characters">
+				// 		{characters.map(character => (
+				// 			<Character
+				// 				key={character.id}
+				// 				id={character.id}
+				// 				name={character.name}
+				// 				image={character.image}
+				// 				onCharacterHandleClick={characterHandleClick}
+				// 			/>
+				// 		))}
+				// 	</div>
+				// </div>
 			)}
 		</>
 	);
