@@ -8,9 +8,11 @@ import Game from './Game/Game';
 
 const Main = () => {
 	const [characters, setCharacters] = useState([]);
+	const [charactersToDisplay, setCharactersToDisplay] = useState([]);
 	const [errorFetching, setErrorFetching] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [level, setLevel] = useState(1);
+	const [numCharToShow, setNumCharToShow] = useState(4);
 
 	// make an api call to fetch data
 	useEffect(() => {
@@ -18,25 +20,24 @@ const Main = () => {
 
 		apiCall()
 			.then(response => {
+				let counterId = 0;
+
 				const newCharacters = response.data.map(currentCharacter => {
+					counterId++;
 					return {
-						id: currentCharacter.id,
+						id: counterId,
 						name: currentCharacter.name,
 						image: currentCharacter.image
 					};
 				});
 
-				// setCharacters(prevState => {
-				// 	return {
-				// 		...prevState,
-				// 		newCharacters
-				// 	};
-				// });
-				setCharacters(characters.concat(newCharacters));
+				setCharacters(newCharacters);
 
-				setTimeout(() => {
-					setLoading(false);
-				}, 500);
+				// One the first render, we will only display four random characters then each level we add more...
+				let toDisplay = [...newCharacters].sort(() => 0.5 - Math.random()).slice(0, 4);
+				setCharactersToDisplay(toDisplay);
+
+				setLoading(false);
 			})
 			.catch(error => {
 				console.log('error fetching');
@@ -45,6 +46,15 @@ const Main = () => {
 			});
 	}, []);
 
+	const changeLevel = () => {
+		if (level === 2) {
+		} else if (level === 3) {
+		} else if (level === 4) {
+		} else {
+			// Game over start new one
+		}
+	};
+
 	return (
 		<main className="main">
 			{loading ? (
@@ -52,9 +62,13 @@ const Main = () => {
 			) : errorFetching ? (
 				<p>{errorFetching}</p>
 			) : (
-				<Game characters={characters} level={level} />
+				<Game
+					characters={charactersToDisplay}
+					level={level}
+					numCharToShow={numCharToShow}
+					setCharactersToDisplay={setCharactersToDisplay}
+				/>
 			)}
-			{/* {!loading ? <Game characters={characters} level={level} /> : <p style={{ color: 'black' }}>Still loading...</p>} */}
 		</main>
 	);
 };
