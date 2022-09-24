@@ -2,7 +2,9 @@ import Logo from '../../images/Logo.svg';
 import styles from '../../styles/Header.module.css';
 import Score from './Score';
 
-const Header = () => {
+const Header = ({ scoreInfo }) => {
+	const { score, bestScore } = scoreInfo;
+
 	return (
 		<header>
 			<div className={styles['header-container']}>
@@ -11,7 +13,7 @@ const Header = () => {
 					Memory <span>Game</span>
 				</h1>
 			</div>
-			<Score />
+			<Score score={score} bestScore={bestScore} />
 		</header>
 	);
 };

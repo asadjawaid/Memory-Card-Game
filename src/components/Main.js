@@ -6,7 +6,9 @@ import '../styles/Main.module.css';
 
 import Game from './Game/Game';
 
-const Main = () => {
+const Main = ({ scoreInfo }) => {
+	// const { score, bestScore, setScore, setBestScore } = scoreInfo;
+
 	const [characters, setCharacters] = useState([]);
 	const [charactersToDisplay, setCharactersToDisplay] = useState([]);
 	const [errorFetching, setErrorFetching] = useState('');
@@ -67,6 +69,7 @@ const Main = () => {
 					level={level}
 					numCharToShow={numCharToShow}
 					setCharactersToDisplay={setCharactersToDisplay}
+					scoreInfo={scoreInfo}
 				/>
 			)}
 		</main>

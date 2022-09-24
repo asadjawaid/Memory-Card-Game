@@ -3,7 +3,7 @@ const GameOver = ({ score }) => {
 		<div>
 			<h1>Game Over!</h1>
 			<p>Your score was {score}</p>
-			<button>New Game</button>
+			<button>Start a new game</button>
 		</div>
 	);
 };
