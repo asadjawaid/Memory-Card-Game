@@ -7,7 +7,7 @@ import '../styles/Main.module.css';
 import Game from './Game/Game';
 
 const Main = ({ scoreInfo }) => {
-	// const { score, bestScore, setScore, setBestScore } = scoreInfo;
+	const { score, bestScore, setScore, setBestScore } = scoreInfo;
 
 	const [characters, setCharacters] = useState([]);
 	const [charactersToDisplay, setCharactersToDisplay] = useState([]);
@@ -57,6 +57,14 @@ const Main = ({ scoreInfo }) => {
 		}
 	};
 
+	const newGame = () => {
+		setBestScore(score);
+		setScore(0);
+		// re shuffle and get 4 random characters
+		let toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 4);
+		setCharactersToDisplay(toDisplay);
+	};
+
 	return (
 		<main className="main">
 			{loading ? (
@@ -70,6 +78,7 @@ const Main = ({ scoreInfo }) => {
 					numCharToShow={numCharToShow}
 					setCharactersToDisplay={setCharactersToDisplay}
 					scoreInfo={scoreInfo}
+					onNewGame={newGame}
 				/>
 			)}
 		</main>

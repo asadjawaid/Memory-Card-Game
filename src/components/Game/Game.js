@@ -1,10 +1,9 @@
-import Character from './Character';
 import { useState } from 'react';
 import GameOver from '../../components/GameOver/GameOver';
 import GameContainer from './GameContainer';
 import '../../styles/Main.css';
 
-const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreInfo }) => {
+const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreInfo, onNewGame }) => {
 	const { score, setScore, setBestScore } = scoreInfo;
 
 	const [clickedCharacters, setClickedCharacters] = useState([]);
@@ -15,8 +14,8 @@ const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreI
 		// if the character has already been clicked, then game over otherwise add them
 		if (clickedCharacters.includes(id)) {
 			// game over, so we will display the game over component and restart the game
-			setBestScore(score);
 			setGameDone(true);
+			setClickedCharacters([]);
 			return;
 		}
 
@@ -27,26 +26,18 @@ const Game = ({ characters, level, numCharToShow, setCharactersToDisplay, scoreI
 		setScore(score + 1);
 	};
 
+	const startNewGame = () => {
+		onNewGame();
+		setBestScore(score);
+		setGameDone(false);
+	};
+
 	return (
 		<>
 			{gameDone ? (
-				<GameOver score={score} />
+				<GameOver score={score} onStartNewGame={startNewGame} />
 			) : (
 				<GameContainer characters={characters} level={level} characterHandleClick={characterHandleClick} />
-				// <div className="game-container">
-				// 	<p className="game-container__level">Level {level}</p>
-				// 	<div className="game-container__characters">
-				// 		{characters.map(character => (
-				// 			<Character
-				// 				key={character.id}
-				// 				id={character.id}
-				// 				name={character.name}
-				// 				image={character.image}
-				// 				onCharacterHandleClick={characterHandleClick}
-				// 			/>
-				// 		))}
-				// 	</div>
-				// </div>
 			)}
 		</>
 	);
