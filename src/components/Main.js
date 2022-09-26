@@ -7,7 +7,7 @@ import '../styles/Main.module.css';
 import Game from './Game/Game';
 
 const Main = ({ scoreInfo }) => {
-	const { score, bestScore, setScore, setBestScore } = scoreInfo;
+	const { score, setScore, setBestScore } = scoreInfo;
 
 	const [characters, setCharacters] = useState([]);
 	const [charactersToDisplay, setCharactersToDisplay] = useState([]);
@@ -48,21 +48,53 @@ const Main = ({ scoreInfo }) => {
 			});
 	}, []);
 
-	const changeLevel = () => {
-		if (level === 2) {
-		} else if (level === 3) {
-		} else if (level === 4) {
+	const changeLevel = newLevel => {
+		let toDisplay = [];
+
+		if (newLevel === 2) {
+			toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 6);
+			setNumCharToShow(6);
+		} else if (newLevel === 3) {
+			toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 8);
+			setNumCharToShow(8);
+		} else if (newLevel === 4) {
+			toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 10);
+			setNumCharToShow(10);
+		} else if (newLevel === 5) {
+			toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 12);
+			setNumCharToShow(12);
 		} else {
-			// Game over start new one
+			// game over, start a new game
+			setScore(0);
+			setBestScore(0);
+			toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 4);
+			setNumCharToShow(4);
 		}
+
+		setLevel(newLevel);
+		setBestScore(score);
+		setScore(0);
+		setCharactersToDisplay(toDisplay);
 	};
 
 	const newGame = () => {
-		setBestScore(score);
-		setScore(0);
+		setCharactersToDisplay([]);
 		// re shuffle and get 4 random characters
 		let toDisplay = [...characters].sort(() => 0.5 - Math.random()).slice(0, 4);
 		setCharactersToDisplay(toDisplay);
+		setNumCharToShow(4);
+	};
+
+	const characterInfo = {
+		charactersToDisplay,
+		numCharToShow,
+		setCharactersToDisplay
+	};
+
+	const levelInfo = {
+		level,
+		setLevel,
+		changeLevel
 	};
 
 	return (
@@ -72,14 +104,7 @@ const Main = ({ scoreInfo }) => {
 			) : errorFetching ? (
 				<p>{errorFetching}</p>
 			) : (
-				<Game
-					characters={charactersToDisplay}
-					level={level}
-					numCharToShow={numCharToShow}
-					setCharactersToDisplay={setCharactersToDisplay}
-					scoreInfo={scoreInfo}
-					onNewGame={newGame}
-				/>
+				<Game characterInfo={characterInfo} levelInfo={levelInfo} scoreInfo={scoreInfo} onNewGame={newGame} />
 			)}
 		</main>
 	);
