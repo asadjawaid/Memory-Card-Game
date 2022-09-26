@@ -1,0 +1,35 @@
+.game-over-container {
+	/* background-color: blue; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 130px;
+}
+
+.game-over-container p {
+	font-size: 1.4rem;
+}
+
+.game-over-container__title {
+	text-transform: uppercase;
+}
+
+.game-over-container__btn {
+	padding: 10px;
+	font-size: 1.2rem;
+	outline: none;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-over-container__btn:hover {
+	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+	transform: translateY(-7px);
+	color: #ffe81f;
+	background-color: black;
+}
