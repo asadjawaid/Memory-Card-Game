@@ -1,7 +1,7 @@
 
 # Star Wars Memory Card Game
 
-This application was built with React which allows players to select card a to play a memory card game.
+This application was built with React which allows players to test their memory skills.
 
 [Live Demo]()
 
