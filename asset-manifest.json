@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Memory-Card-Game/static/css/main.646ab7ba.css",
+    "main.js": "/Memory-Card-Game/static/js/main.77a96288.js",
+    "static/media/Logo.svg": "/Memory-Card-Game/static/media/Logo.dba53346071790164aae5a3f7d01797b.svg",
+    "index.html": "/Memory-Card-Game/index.html",
+    "main.646ab7ba.css.map": "/Memory-Card-Game/static/css/main.646ab7ba.css.map",
+    "main.77a96288.js.map": "/Memory-Card-Game/static/js/main.77a96288.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.646ab7ba.css",
+    "static/js/main.77a96288.js"
+  ]
+}
